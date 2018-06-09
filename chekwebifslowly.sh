@@ -46,3 +46,4 @@ echo "########################################"
 
 #批量删除进程
 ps -ef | grep 'caddy' | grep -v grep | cut -c 9-15 | xargs kill -9
+ps -ef | grep 'caddy' | grep -v grep | awk '{print "kill -9 " $2}' | sh
