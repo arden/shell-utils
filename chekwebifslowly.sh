@@ -1,18 +1,18 @@
 #!/bin/sh
 
-host=ÓÊÏäSMTP·şÎñÆ÷
-sender=·¢ËÍÈËÓÊÏä
-password=ÓÊÏäÃÜÂë
-receiver=ÓÊ¼ş½ÓÊÕÈËµØÖ·£¬ÓÃ¶ººÅ¸ô¿ª
+host=é‚®ç®±SMTPæœåŠ¡å™¨
+sender=å‘é€äººé‚®ç®±
+password=é‚®ç®±å¯†ç 
+receiver=é‚®ä»¶æ¥æ”¶äººåœ°å€ï¼Œç”¨é€—å·éš”å¼€
 
-#echo "ÇëÊäÈëÄãµÄÍø¹ØµØÖ·"
+#echo "è¯·è¾“å…¥ä½ çš„ç½‘å…³åœ°å€"
 #read sgateway
 sgateway="tujiao.com"
-echo "Á¬½ÓµÄµÄÍø¹ØÊÇ$sgateway"
+echo "è¿æ¥çš„çš„ç½‘å…³æ˜¯$sgateway"
 delay=400
-echo "ÉèÖÃ×î´óÑÓ³Ù²»³¬¹ı$delayºÁÃë"
+echo "è®¾ç½®æœ€å¤§å»¶è¿Ÿä¸è¶…è¿‡$delayæ¯«ç§’"
 nexttime=2
-echo "Ã¿¸ô$nexttimeÃë½øĞĞÒ»´Î¼ì²é"
+echo "æ¯éš”$nexttimeç§’è¿›è¡Œä¸€æ¬¡æ£€æŸ¥"
 echo "########################################"
 #while :
 #do
@@ -20,7 +20,7 @@ echo "########################################"
     expr ${network} + 0 1>/dev/null 2>&1
     if [ $? -eq 0 ]; then
         #/etc/init.d/network restart
-        echo "ÍøÂç¶ÏÁË" 
+        echo "ç½‘ç»œæ–­äº†" 
         subject="tujiao.com down"
         content=$subject
        /app/java/bin/java -cp /cron/monitor:/cron/lib/* SendMails $host $sender $password "$subject" "$content" $receiver
@@ -30,16 +30,19 @@ echo "########################################"
         if [ "$value_n" -gt "$delay" ];
         then
             #/etc/init.d/network restart
-            echo "ÍøÂç¶ÏÁË"                    
+            echo "ç½‘ç»œæ–­äº†"                    
             subject="tujiao.com slowly"
             content=$subject
             /app/java/bin/java -cp /cron/monitor:/cron/lib/* SendMails $host $sender $password "$subject" "$content" $receiver
         else
-            echo "¼ì²é½á¹ûÎª"                
-            echo "ÍøÂçÍ¨³©"                
-            echo "ÍøÂçÑÓ³ÙÎª$networkÃë"               
+            echo "æ£€æŸ¥ç»“æœä¸º"                
+            echo "ç½‘ç»œé€šç•…"                
+            echo "ç½‘ç»œå»¶è¿Ÿä¸º$networkç§’"               
             echo "########################"             
         fi
     fi
     #sleep $nexttime
 #done 
+
+#æ‰¹é‡åˆ é™¤è¿›ç¨‹
+ps -ef | grep 'caddy' | grep -v grep | cut -c 9-15 | xargs kill -9
