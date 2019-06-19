@@ -48,3 +48,6 @@ echo "########################################"
 ps -ef | grep 'caddy' | grep -v grep | cut -c 9-15 | xargs kill -9
 ps -ef | grep 'caddy' | grep -v grep | awk '{print "kill -9 " $2}' | sh
 ps -ef | grep 'caddy' | grep -v grep | awk '{print "sudo kill " $2}' | sh
+
+# 在文件每行后面加上 “,” 号
+more 1.txt | awk -F "" '{print $0.","}'
