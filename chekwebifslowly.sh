@@ -51,3 +51,7 @@ ps -ef | grep 'caddy' | grep -v grep | awk '{print "sudo kill " $2}' | sh
 
 # 在文件每行后面加上 “,” 号
 more 1.txt | awk -F "" '{print $0.","}'
+
+# 中断来自指定ip的ssh链接
+netstat -anp | grep :22 | grep xxxxip | awk '{print substr($7,0,length($7)-6)}' | kill `awk '{print}'`
+netstat -anp | grep :22 | grep 61.141.77.224 | awk '{print substr($7,0,length($7)-6)}' | kill `awk '{print}'`
