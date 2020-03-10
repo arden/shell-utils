@@ -55,3 +55,6 @@ more 1.txt | awk -F "" '{print $0.","}'
 # 中断来自指定ip的ssh链接
 netstat -anp | grep :22 | grep xxxxip | awk '{print substr($7,0,length($7)-6)}' | kill `awk '{print}'`
 netstat -anp | grep :22 | grep 61.141.77.224 | awk '{print substr($7,0,length($7)-6)}' | kill `awk '{print}'`
+
+# Linux查看带宽占用
+iftop -i eth0 -P
